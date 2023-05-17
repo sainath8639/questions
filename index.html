@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Question Renderer</title>
+    <style>
+      .question {
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .options {
+        margin-top: 10px;
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .option {
+        margin-bottom: 5px;
+        font-weight: normal;
+      }
+
+      .option p {
+        margin: 0;
+      }
+
+      .option:hover {
+        background-color: #f5f5f5;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="questionContainer"></div>
+
+    <script>
+      // Load JSON data from file
+      fetch("questions.json")
+        .then((response) => response.json())
+        .then((data) => renderQuestions(data))
+        .catch((error) => console.error(error));
+
+      // Render questions and options
+      function renderQuestions(questions) {
+        var questionContainer = document.getElementById("questionContainer");
+
+        questions.forEach((question) => {
+          // Create question element
+          var questionElement = document.createElement("div");
+          questionElement.className = "question";
+          questionElement.innerHTML = question.questionText;
+
+          // Create options element
+          var optionsElement = document.createElement("div");
+          optionsElement.className = "options";
+
+          question.options.forEach((option) => {
+            // Create option element
+            var optionElement = document.createElement("div");
+            optionElement.className = "option";
+            optionElement.innerHTML = option.optionText;
+
+            // Append option element to options element
+            optionsElement.appendChild(optionElement);
+          });
+
+          // Append options element to question element
+          questionElement.appendChild(optionsElement);
+
+          // Append question element to question container
+          questionContainer.appendChild(questionElement);
+        });
+      }
+    </script>
+  </body>
+</html>
