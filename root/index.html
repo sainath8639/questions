@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Question Renderer</title>
@@ -6,6 +6,22 @@
       .question {
         margin-bottom: 20px;
         font-weight: bold;
+        background-color: #f8c3cd;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .question-number {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-color: #f45b69;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 50%;
+        margin-right: 10px;
+        line-height: 30px;
       }
 
       .options {
@@ -16,7 +32,6 @@
 
       .option {
         margin-bottom: 5px;
-        font-weight: normal;
       }
 
       .option p {
@@ -33,31 +48,69 @@
     <div id="questionContainer"></div>
 
     <script>
-      // Load JSON data from file
-      fetch("questions.json")
+      fetch("a.json")
         .then((response) => response.json())
         .then((data) => renderQuestions(data))
         .catch((error) => console.error(error));
 
       // Render questions and options
+      // Render questions and options
       function renderQuestions(questions) {
-        var questionContainer = document.getElementById("questionContainer");
+        let questionContainer = document.getElementById("questionContainer");
+        let optionPrefixes = [
+          "a)",
+          "b)",
+          "c)",
+          "d)",
+          "e)",
+          "f)",
+          "g)",
+          "h)",
+          "i)",
+          "j)",
+        ]; // Add more prefixes as needed
 
-        questions.forEach((question) => {
+        questions.forEach((question, index) => {
           // Create question element
-          var questionElement = document.createElement("div");
+          let questionElement = document.createElement("div");
           questionElement.className = "question";
-          questionElement.innerHTML = question.questionText;
+
+          // Create question number element
+          let questionNumberElement = document.createElement("span");
+          questionNumberElement.className = "question-number";
+          questionNumberElement.textContent = index + 1;
+
+          // Append question number element to question element
+          questionElement.appendChild(questionNumberElement);
+
+          // Create question text element
+          let questionTextElement = document.createElement("span");
+          questionTextElement.innerHTML = question.questionText;
+
+          // Append question text element to question element
+          questionElement.appendChild(questionTextElement);
 
           // Create options element
-          var optionsElement = document.createElement("div");
+          let optionsElement = document.createElement("div");
           optionsElement.className = "options";
 
-          question.options.forEach((option) => {
+          question.options.forEach((option, optionIndex) => {
             // Create option element
-            var optionElement = document.createElement("div");
+            let optionElement = document.createElement("div");
             optionElement.className = "option";
-            optionElement.innerHTML = option.optionText;
+
+            // Create option prefix element
+            let optionPrefixElement = document.createElement("span");
+            optionPrefixElement.className = "option-prefix";
+            optionPrefixElement.textContent = optionPrefixes[optionIndex];
+
+            // Create option text element
+            let optionTextElement = document.createElement("span");
+            optionTextElement.innerHTML = option.optionText;
+
+            // Append option prefix and option text elements to option element
+            optionElement.appendChild(optionPrefixElement);
+            optionElement.appendChild(optionTextElement);
 
             // Append option element to options element
             optionsElement.appendChild(optionElement);
@@ -71,5 +124,17 @@
         });
       }
     </script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    this is body
   </body>
 </html>
